@@ -51,17 +51,12 @@ class Magatzem {
      */
     private void actualitzarArticleNormal(Article article) {
 
-        if (article.qualitat > 0) {
-            article.qualitat--;
-        }
+        baixarQualitat(article);
 
         article.diesPerVendre--;
 
         if (article.diesPerVendre < 0) {
-
-            if (article.qualitat > 0) {
-                article.qualitat--;
-            }
+            baixarQualitat(article);
         }
     }
 
@@ -71,17 +66,12 @@ class Magatzem {
      */
     private void actualitzarFormatge(Article article) {
 
-        if (article.qualitat < 50) {
-            article.qualitat++;
-        }
+        pujarQualitat(article);
 
         article.diesPerVendre--;
 
         if (article.diesPerVendre < 0) {
-
-            if (article.qualitat < 50) {
-                article.qualitat++;
-            }
+            pujarQualitat(article);
         }
     }
 
@@ -93,23 +83,14 @@ class Magatzem {
      */
     private void actualitzarEntrades(Article article) {
 
-        if (article.qualitat < 50) {
+        pujarQualitat(article);
 
-            article.qualitat++;
+        if (article.diesPerVendre < 11) {
+            pujarQualitat(article);
+        }
 
-            if (article.diesPerVendre < 11) {
-
-                if (article.qualitat < 50) {
-                    article.qualitat++;
-                }
-            }
-
-            if (article.diesPerVendre < 6) {
-
-                if (article.qualitat < 50) {
-                    article.qualitat++;
-                }
-            }
+        if (article.diesPerVendre < 6) {
+            pujarQualitat(article);
         }
 
         article.diesPerVendre--;
@@ -125,5 +106,25 @@ class Magatzem {
      */
     private void actualitzarMartell(Article article) {
 
+    }
+
+    /*
+     * Augmenta la qualitat sense superar el màxim permès
+     */
+    private void pujarQualitat(Article article) {
+
+        if (article.qualitat < 50) {
+            article.qualitat++;
+        }
+    }
+
+    /*
+     * Redueix la qualitat sense baixar de 0
+     */
+    private void baixarQualitat(Article article) {
+
+        if (article.qualitat > 0) {
+            article.qualitat--;
+        }
     }
 }
