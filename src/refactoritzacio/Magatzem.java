@@ -2,14 +2,23 @@ package refactoritzacio;
 
 class Magatzem {
 
-    /* Array que guarda tots els articles del magatzem */
+    /**
+     * Constants amb els noms dels articles especials
+     */
+    private static final String FORMATGE = "Formatge Gidurat";
+    private static final String ENTRADES = "Entrades per al Concert del Trobador";
+    private static final String MARTELL = "Martell de Thor (Llegendari)";
+
+    /**
+     * Array que guarda tots els articles del magatzem
+     */
     Article[] articles;
 
     public Magatzem(Article[] articles) {
         this.articles = articles;
     }
 
-    /*
+    /**
      * Recorre tots els articles
      * i actualitza el seu estat
      */
@@ -20,21 +29,21 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * Comprova el tipus d'article
      * i crida el mètode corresponent
      */
     private void actualitzarArticle(Article article) {
 
-        if (article.nom.equals("Martell de Thor (Llegendari)")) {
+        if (article.nom.equals(MARTELL)) {
 
             actualitzarMartell(article);
 
-        } else if (article.nom.equals("Formatge Gidurat")) {
+        } else if (article.nom.equals(FORMATGE)) {
 
             actualitzarFormatge(article);
 
-        } else if (article.nom.equals("Entrades per al Concert del Trobador")) {
+        } else if (article.nom.equals(ENTRADES)) {
 
             actualitzarEntrades(article);
 
@@ -44,7 +53,7 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * Articles normals:
      * - la qualitat baixa cada dia
      * - quan caduca, baixa el doble
@@ -60,7 +69,7 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * El formatge augmenta la qualitat
      * amb el pas del temps
      */
@@ -75,7 +84,7 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * Les entrades augmenten la qualitat
      * segons la proximitat del concert
      *
@@ -100,7 +109,7 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * El Martell és un article llegendari
      * i no modifica el seu estat
      */
@@ -108,7 +117,7 @@ class Magatzem {
 
     }
 
-    /*
+    /**
      * Augmenta la qualitat sense superar el màxim permès
      */
     private void pujarQualitat(Article article) {
@@ -118,7 +127,7 @@ class Magatzem {
         }
     }
 
-    /*
+    /**
      * Redueix la qualitat sense baixar de 0
      */
     private void baixarQualitat(Article article) {
